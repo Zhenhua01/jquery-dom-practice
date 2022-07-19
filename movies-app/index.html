@@ -1,0 +1,45 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Movies App!</title>
+</head>
+
+<body>
+  <h1>Rate Movies Here!</h1>
+
+  <form>
+    Movie Title: <input class="title" type="text">
+    Rating: <input class="rating" type="number" min="0" max="10">
+    <button class="submit" type="submit">Submit Rating!</button>
+  </form>
+
+  <div class="display-area">
+  </div>
+
+  <script src="https://unpkg.com/jquery"></script>
+
+  <script>
+    $(".display-area").on("click", 'button', function (e) {
+      $(e.target).parent().remove();
+    });
+
+    $("form").on("submit", function (e) {
+      e.preventDefault();
+      const title = $(".title").val();    // text
+      const rating = $(".rating").val();  // text
+      const $newDiv = $("<div>").attr('class', 'newRating'); // jQuery Object
+      $newDiv.html(`
+        <p> This ${title} is a ${rating}/10 </p>
+        <button> Delete Movie! </button>
+      `);
+
+      $(".display-area").append($newDiv);
+    })
+
+  </script>
+</body>
+
+</html>
