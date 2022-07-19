@@ -70,22 +70,29 @@
       </div>
     </div>
   </div>
+
   <script src="https://unpkg.com/jquery"></script>
+
   <script>
     // 1
-    $("article img").attr("class", "image-center");
-    //2
-    $("article p:last").remove();
-    //3
-    $("#title").css("font-size", Math.random() * 100);
-    //4
-    let $list = $("ol li:last");
-    $("<li> Hello! </li>").insertAfter($list);
-    // ol.append() to existing ol;
-    // insert new thing to after ol li;
-    //5
+    $("article img").attr("class", "image-center"); // assign attr to img
+
+    // 2
+    $("article p:last").remove();                   // remove last p of article
+
+    // 3
+    $("#title").css("font-size", Math.random() * 100);  // change font of title
+
+    // 4
+    let $list = $("ol li:last");                     // get ol li:last item
+    $("<li> Hello! </li>").insertAfter($list);       // insert new li after
+    // ol.append(), to append to existing ol;
+    // or insert new thing to after ol li:last;
+
+    // 5                                      // empty aside then append p text
     $("aside").empty().append("<p>").text("So sorry about the list how silly of us");
-    //6
+
+    // 6                                      // event listener on form-control
     $(".form-control").on("change", function () {
       let $red = $(".form-control").eq(0).val();
       let $blue = $(".form-control").eq(1).val();
@@ -93,7 +100,8 @@
 
       $("body").css("background-color", `rgb(${$red}, ${$green}, ${$blue})`);
     });
-    //7
+
+    // 7                                    // remove img with event.target
     $("img").on("click", function (evt) {
       $(evt.target).remove();
     });

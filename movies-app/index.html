@@ -12,8 +12,8 @@
 
   <form>
     Movie Title: <input class="title" type="text">
-    Rating: <input class="rating" type="number" min="0" max="10">
-    <button class="submit" type="submit">Submit Rating!</button>
+    Movie Rating: <input class="rating" type="number" min="0" max="10">
+    <button type="submit">Submit Rating!</button>
   </form>
 
   <div class="display-area">
@@ -22,21 +22,23 @@
   <script src="https://unpkg.com/jquery"></script>
 
   <script>
-    $(".display-area").on("click", 'button', function (e) {
-      $(e.target).parent().remove();
+    // initialize event listener on whole display area
+    $(".display-area").on("click", 'button', function (evt) {
+      $(evt.target).parent().remove();
     });
 
-    $("form").on("submit", function (e) {
-      e.preventDefault();
-      const title = $(".title").val();    // text
-      const rating = $(".rating").val();  // text
-      const $newDiv = $("<div>").attr('class', 'newRating'); // jQuery Object
+    // listen for submission of whole form, not just button
+    $("form").on("submit", function (evt) {
+      evt.preventDefault();
+      const title = $(".title").val();    // get title text
+      const rating = $(".rating").val();  // get rating value
+      const $newDiv = $("<div>");         // create newDiv (jQuery Object)
       $newDiv.html(`
-        <p> This ${title} is a ${rating}/10 </p>
-        <button> Delete Movie! </button>
-      `);
+        <p> The movie ${title} has a ${rating}/10. </p>
+        <button> Delete Movie </button>
+      `);                                 // create html in newDiv
 
-      $(".display-area").append($newDiv);
+      $(".display-area").append($newDiv); // append newDiv to display-area
     })
 
   </script>
